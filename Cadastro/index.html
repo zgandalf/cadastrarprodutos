@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro Produtos</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+
+</head>
+<body>
+    <div class="btnDark">
+        <button onclick="color()" id="btnColor">Modo Escuro</button>
+    </div>
+    <div class="box">
+        <form>
+            <fieldset id="field">
+                <legend id="leg"><b>Cadastre o Produto</b></legend>
+                <br>
+                <div class="inputBox">
+                    <input type="text" name="produto" id="produto" class="inputUser" required>
+                    <label for="produto" class="labelInput">Produto</label>
+                </div>
+                <p>Marca:</p>
+                <input type="radio" id="Class" name="Marca" value="Class" required>
+                <label for="Class">Nike</label>
+                <br>
+                <input type="radio" id="Sufgang" name="Marca" value="Sufgang" required>
+                <label for="Sufgang">Adidas</label>
+                <br>
+                <input type="radio" id="thrasher" name="Marca" value="thrasher" required>
+                <label for="thrasher">Puma</label>
+                <br>
+                <input type="radio" id="Chronic 420Ⓡ" name="Marca" value="Chronic 420Ⓡ" required>
+                <label for="Chronic 420Ⓡ">All Stars</label>
+                <br>
+                <input type="radio" id="Outras" name="Marca" value="Outras" required>
+                <label for="Outras">Outras</label>
+
+
+                <br><br><br>
+                <div class="inputBox">
+                    <input type="text" name="custo" id="custo" onchange="calc()" class="inputUser" required>
+                    <label for="custo" class="labelInput">Preço de custo</label>
+                </div>
+                <br><br>
+                <div class="inputBox">
+                    <input type="tel" name="lucro" id="lucro" onchange="calc()" class="inputUser" required>
+                    <label for="lucro" class="labelInput">Percentual de lucro</label>
+                </div>
+                <br><br>
+                <div class="inputBox">
+                    <input type="text" name="venda" id="venda" onchange="calc()" class="inputUser" required>
+                    <label for="venda" class="labelInput">Preço de venda</label>
+                </div>
+                <br><br>
+                <div class="inputBox">
+                    <input type="text" name="Quantidade" id="Quantidade" class="inputUser" required>
+                    <label for="Quantidade" class="labelInput">Quantidade</label>
+                </div>
+                <br><br>
+                <div class="inputBox">
+                    <label for="Imagem">Imagem:</label><br><br>
+                    <input type="file" name="Imagem" id="Imagem">
+
+                </div>
+                <br><br>
+                <input type="submit" name="submit" id="submit" class="submit">
+
+
+            </fieldset>
+        </form>
+    </div>
+    <script>let cont =0;
+
+        function calc(){
+            let lucro = document.getElementById('lucro').value;
+            let custo = document.getElementById('custo').value;
+            if(lucro!=="" && custo!==""){
+
+                valorF = parseFloat(custo)+((parseFloat(custo)/100)*parseFloat(lucro));
+                let venda = document.getElementById('venda');
+
+                venda.value = "R$"+valorF.toFixed(2);
+            }
+            else if(custo==""){
+                venda.value = "";
+            }
+            else if(lucro=="" && custo!==""){
+                venda.value = "R$"+custo;
+            }
+        }
+
+
+
+        function color(){
+            var body = document.body;
+            var fiel = document.getElementById('field');
+            var leg = document.getElementById('leg');
+            var sub = document.getElementById('submit');
+            var iUser = document.getElementsByClassName("inputUser");
+            var iLabel = document.getElementsByClassName("labelInput");
+            var btnColor = document.getElementById("btnColor");
+            body.classList.toggle("bodyDark");
+            fiel.classList.toggle("fieldsetDark");
+            leg.classList.toggle("legendDark");
+            sub.classList.toggle("submitDark");
+            for(var i = 0; i<iUser.length; i++){
+                iUser[i].classList.toggle("inputUserDark");
+            }
+            for(var i = 0; i<iLabel.length; i++){
+                iLabel[i].classList.toggle("labelInputDark");
+            }
+            cont++;
+            if(cont%2==1){
+                btnColor.innerText="Modo Claro"
+            }
+            else{
+                btnColor.innerText="Modo Escuro"
+            }
+
+
+
+        }</script>
+</body>
+</html> 
